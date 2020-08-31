@@ -1,0 +1,33 @@
+<%- include('../partials/header'); -%>
+ 
+
+<div class="container" style="margin-top: 20px;">
+    <header class="jumbotron">
+        <div>
+            <h1>Welcome to MyStay</h1>
+            <p>Book your Favorite Hotels</p>
+            <%if(currentUser && currentUser.type == 'Hotel_Owner') {%>
+            <a class="btn btn-primary btn-large" href="/campgrounds/new">Add new Hotel</a>
+            <% } %>
+        </div>
+    </header>
+
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+        <% campgrounds.forEach(function(campground){  %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= campground.image%>" style="width: 200px; height: 150px;">
+                <div class="caption">
+                    <h4><%= campground.name %></h4>
+                </div>
+                <p>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">More info</a>
+                </p>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+
+<%- include('../partials/footer'); -%>
+
